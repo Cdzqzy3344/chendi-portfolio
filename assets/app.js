@@ -569,6 +569,7 @@
     document.body.appendChild(menuScrim);
     document.body.appendChild(menuSheet);
     document.body.appendChild(menuToggle);
+    document.body.classList.add('menu-ready');
 
     var menuClose = document.getElementById('menuClose');
     var menuLinks = menuSheet.querySelectorAll('.menu-links a');

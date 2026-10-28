@@ -1041,7 +1041,7 @@ html{--nav-h:76px;}
 html.nav-solid{--nav-h:64px;}
 .menu-toggle{
   position:fixed;top:calc(var(--nav-h,76px) / 2);right:40px;z-index:520;transform:translateY(-50%);
-  width:84px;height:40px;border:0;border-radius:20px;background:transparent;
+  width:84px;height:40px;border:0;border-radius:20px;background:#F4F1EA;
   display:flex;align-items:center;justify-content:center;gap:5px;
   font-family:inherit;font-size:15px;font-weight:500;color:#0A0A0B;
   cursor:pointer;-webkit-tap-highlight-color:transparent;
@@ -1055,6 +1055,7 @@ html.nav-solid .menu-toggle{top:calc(var(--nav-h,64px) / 2);}
 .menu-toggle i{width:4px;height:4px;border-radius:50%;background:#0A0A0B;display:block;}
 .menu-word{display:inline-flex;align-items:center;}
 .menu-toggle .letter{display:inline-block;transition:none;will-change:transform;}
+.menu-ready .menu-toggle{background:transparent;}
 .menu-toggle:focus,.menu-toggle:focus-visible{outline:none;}
 .menu-open .menu-toggle{opacity:0;pointer-events:none;}
 .menu-open .menu-toggle span,.menu-open .menu-toggle i{
