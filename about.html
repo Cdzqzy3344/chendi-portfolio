@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>关于 · 陈镝</title>
+<meta name="description" content="陈镝 —— 剪辑师。校园宣传片、剧情短片、竖屏口播、二次元混剪。">
+<link rel="stylesheet" href="assets/style.css?v=20261027eg">
+<link rel="preload" as="image" href="assets/bg/transition-blackhole-hd.jpg">
+</head>
+<body>
+
+<!-- ============ 无刷转场：三条扫过的黑幕 ============ -->
+<div class="tr" id="tr" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="bg-grid bg-grid-far" id="bgGridFar" aria-hidden="true"></div>
+<div class="bg-grid bg-grid-near" id="bgGridNear" aria-hidden="true"></div>
+<div class="bg-glow" id="bgGlow" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="index.html">陈镝</a>
+  <button class="menu-toggle" id="menuToggle" data-cursor="菜单" type="button" aria-expanded="false" aria-controls="menuSheet">
+    <span class="menu-word"><span class="letter">菜</span><span class="letter">单</span></span><i></i>
+  </button>
+</header>
+
+<main data-route="about">
+
+  <!-- ============ 关于 ============ -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="rv">
+          <div class="label" style="font-family:Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.26em;color:var(--accent);margin-bottom:18px">ABOUT</div>
+          <h2 data-parallax="-26">关于镝</h2>
+          <figure class="about-photo">
+            <img src="assets/about/about-portrait-soft.png?v=20261027eg" alt="陈镝" loading="lazy">
+          </figure>
+        </div>
+        <div class="body rv">
+          <p>陈镝——镝（di）六十六号化学元素 Dy</p>
+          <p>目前已有一年的视频剪辑经验，题材跨度广——<strong>校园宣传片、思政纪录片、剧情短片、二次元混剪、商业口播</strong>等，都做过；还在不断尝试各种各样的类型。</p>
+          <p>每一条作品的创作：先确认这条片子要让人记住哪一件事，再决定节奏和镜头；配乐、字幕、调色，最后统一收尾。</p>
+          <p>用合适的工具，创造精良的作品。用符合片子的判断——<strong>知道哪一帧该留、哪一拍该切</strong></p>
+          <p>独特的想法，新奇的创意，众多的 Idea，是视频创作的最好肥料</p>
+          <p><strong>无限进步，是我最大的天赋</strong></p>
+          <div class="skills">
+            <span>剪映专业版</span>
+            <span>Ae</span>
+            <span>Ps</span>
+            <span>AI 素材</span>
+            <span>ComfyUI</span>
+            <span>DSH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+
+<!-- ============ 背景音乐 ============ -->
+<div class="music-wrap" id="musicWrap">
+  <div class="music" id="music">
+    <audio id="bgm" src="assets/music/bgm.mp3" loop preload="none"></audio>
+    <button class="music-btn" id="musicBtn" type="button" aria-label="播放 / 暂停背景音乐">
+      <span class="music-disc"></span>
+    </button>
+    <div class="music-info">
+      <div class="mi-main">
+        <div class="mi-top">
+          <span class="mi-title">Star Crossing Night</span>
+          <span class="mi-time" id="miTime">00:00 / 00:00</span>
+        </div>
+        <div class="mi-bar" id="miBar"><i id="miFill"></i></div>
+      </div>
+      <button class="mi-volbtn" id="miVolBtn" type="button" aria-label="调节音量">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 9.2v5.6h3.4L12.4 19V5L7.4 9.2H4z" fill="currentColor"/>
+          <path d="M15.6 8.6a4.9 4.9 0 010 6.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M18.3 6.2a8.4 8.4 0 010 11.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="mi-vslider" id="miVSlider"><div class="mi-vfill" id="miVFill"></div></div>
+  </div>
+</div>
+
+<!-- 左下角时间码 -->
+<div class="timecode" id="timecode"><span id="tcText">00:00:00</span></div>
+
+<!-- ============ 播放层 ============ -->
+<div class="player" id="player">
+  <div class="player-close" data-cursor="关闭">&times;</div>
+  <video id="playerVideo" playsinline></video>
+</div>
+
+<!-- ============ 作品放大层 ============ -->
+<div class="zoom" id="zoom">
+  <div class="zoom-inner">
+    <img id="zoomImg" alt="">
+    <div class="zoom-cap">
+      <span id="zoomTitle"></span>
+      <span class="zoom-hint">点击空白处关闭</span>
+    </div>
+  </div>
+</div>
+
+<script src="assets/vendor/lenis.min.js?v=20261027eg"></script>
+<script src="assets/vendor/gsap.min.js?v=20261027eg"></script>
+<script src="assets/data.js?v=20261027eg"></script>
+<script src="assets/app.js?v=20261027eg"></script>
+<script src="assets/void.js?v=20261027eg"></script>
+<script src="assets/vendor/three.min.js?v=20261027eg"></script>
+<script src="assets/hero-particles.js?v=20261027eg"></script>
+<script src="assets/transition.js?v=20261027eg"></script>
+<script src="assets/cursor.js?v=20261027eg"></script>
+<script src="assets/about-words.js?v=20261027eg"></script>
+</body>
+</html>
