@@ -1041,11 +1041,11 @@ html{--nav-h:76px;}
 html.nav-solid{--nav-h:64px;}
 .menu-toggle{
   position:fixed;top:calc(var(--nav-h,76px) / 2);right:40px;z-index:520;transform:translateY(-50%);
-  width:84px;height:40px;border:0;border-radius:20px;background:#F4F1EA;
+  width:84px;height:40px;border:0;border-radius:20px;background:transparent;
   display:flex;align-items:center;justify-content:center;gap:5px;
   font-family:inherit;font-size:15px;font-weight:500;color:#0A0A0B;
   cursor:pointer;-webkit-tap-highlight-color:transparent;
-  transition:opacity .2s var(--ease-out);
+  transition:opacity .2s var(--ease-out) .35s;
 }
 html.nav-solid .menu-toggle{top:calc(var(--nav-h,64px) / 2);}
 .menu-toggle span,.menu-toggle i{
@@ -1055,10 +1055,12 @@ html.nav-solid .menu-toggle{top:calc(var(--nav-h,64px) / 2);}
 .menu-toggle i{width:4px;height:4px;border-radius:50%;background:#0A0A0B;display:block;}
 .menu-word{display:inline-flex;align-items:center;}
 .menu-toggle .letter{display:inline-block;transition:none;will-change:transform;}
+.menu-toggle:focus,.menu-toggle:focus-visible{outline:none;}
 .menu-open .menu-toggle{opacity:0;pointer-events:none;}
 .menu-open .menu-toggle span,.menu-open .menu-toggle i{
   opacity:0;transform:translateX(6px);transition-delay:0s;
 }
+.menu-open .menu-toggle{opacity:0;pointer-events:none;transition-delay:0s;}
 body.player-open .menu-toggle{opacity:0;pointer-events:none;}
 body.player-open .menu-sheet{opacity:0;pointer-events:none;}
 
@@ -1069,18 +1071,17 @@ body.player-open .menu-sheet{opacity:0;pointer-events:none;}
 }
 .menu-scrim.open{opacity:1;visibility:visible;transition:opacity .5s var(--ease-out);}
 
-/* 关闭态必须和药丸是同一块：同尺寸、同位置、不可见。
-   之前这里是 92×48 @top16 的常驻实心层，托在 84×40 @top18 的药丸后面，
-   就是「两个图层」；它又吃不到 nav-solid 的上移，看着像药丸没动。 */
+/* 白色药丸由 menu-sheet 本体承担，始终存在；打开时它长成面板，
+   关闭时缩回药丸。menu-toggle 只放文字/点击层，避免两个白层交叉淡入淡出。 */
 .menu-sheet{
   position:fixed;top:18px;right:40px;z-index:500;
   width:84px;height:40px;border-radius:20px;background:var(--fg);overflow:hidden;
-  opacity:0;pointer-events:none;box-shadow:none;
-  transition:width .9s var(--ease-out),height 1s var(--ease-out),border-radius .9s var(--ease-out),top .4s ease,opacity .2s var(--ease-out),box-shadow .2s;
+  opacity:1;pointer-events:none;box-shadow:none;
+  transition:width .9s var(--ease-spring),height 1s var(--ease-spring),border-radius .9s ease,top .4s ease,box-shadow .25s;
 }
 html.nav-solid .menu-sheet{top:12px;}
 .menu-sheet.open{
-  top:16px;opacity:1;pointer-events:auto;
+  top:16px;pointer-events:auto;
   width:min(468px,calc(100vw - 32px));
   height:calc(100vh - 32px);height:calc(100dvh - 32px);
   border-radius:16px;
@@ -1120,18 +1121,22 @@ html.nav-solid .menu-sheet.open{top:16px;}
 .menu-close{
   position:absolute;top:20px;right:20px;z-index:510;
   display:flex;align-items:center;gap:10px;border:0;background:transparent;
-  color:#0A0A0B;cursor:pointer;opacity:0;transform:scale(.12);transform-origin:top right;
+  color:#0A0A0B;cursor:pointer;transform:scale(.12);transform-origin:top right;
   pointer-events:none;
-  transition:opacity .2s var(--ease-out),transform .8s var(--ease-out);
+  transition:transform .8s var(--ease-spring);
 }
-.menu-sheet.open .menu-close{
-  opacity:1;transform:scale(1);pointer-events:auto;transition-delay:.15s;
+.menu-sheet.open .menu-close{transform:scale(1);pointer-events:auto;}
+.menu-close span{
+  font-family:inherit;font-size:15px;font-weight:500;
+  opacity:0;transform:translateX(20px);transition:opacity .1s,transform .1s;
 }
-.menu-close span{font-family:inherit;font-size:15px;font-weight:500;}
+.menu-sheet.open .menu-close span{opacity:1;transform:none;transition:opacity .3s .2s,transform .3s;}
 .menu-close svg{
   width:48px;height:48px;padding:14px;border-radius:50%;
   background:#0A0A0B;color:var(--fg);display:block;
+  opacity:0;transform:rotate(-45deg);transition:transform .5s,opacity .3s;
 }
+.menu-sheet.open .menu-close svg{opacity:1;transform:none;}
 
 .menu-foot{
   position:absolute;left:45px;right:24px;bottom:24px;
